@@ -27,6 +27,11 @@ router.get("/", (req, res) => {
           plain: true,
         })
       );
+
+      res.render("homepage", {
+        posts,
+        loggedIn: req.session.loggedIn,
+      });
     })
     .catch(err => {
       console.log;
@@ -94,7 +99,7 @@ router.get("/signup", (req, res) => {
 });
 
 router.get("*", (req, res) => {
-  res.status(403).send("You can't go there...");
+  res.status(404).send("You can't go there...");
 });
 
 module.exports = router;

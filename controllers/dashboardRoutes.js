@@ -1,5 +1,4 @@
 const router = require("express").Router();
-const sequelize = require("../config/connection");
 const { Post, User, Comment } = require("../models");
 const withAuth = require("../utils/auth");
 
@@ -26,7 +25,7 @@ router.get("/", withAuth, (req, res) => {
     ],
   })
     .then(dbPostData => {
-      const posts = dbPostData.map(
+      const posts = dbPostData.map(post =>
         post.get({
           plain: true,
         })
@@ -48,7 +47,7 @@ router.get("/edit/:id", withAuth, (req, res) => {
     where: {
       id: req.params.id,
     },
-    attributes: ["id", "comment_text", "post_id", "user_id", "created_at"],
+    attributes: ["id", "title", "content", "created_at"],
     include: [
       {
         model: Comment,
