@@ -2,17 +2,18 @@
    <button type="submit" class="btn" id="create-new-post">Create New Post</button>
 </section>
 
-{{ #if posts.length }}
+{{#if posts.length}}
 <section>
    <h2>Your Dashboard</h2>
    <ul class="post-list">
+       {{#each posts as |post|}}
       <li>
-         {{ > post-info post }}
-         <a href="/dashboard/edit/{{ post.id }}" class="edit-link">Edit Post</a>
+         {{> post-info post}}
+         <a href="/dashboard/edit/{{post.id}}" class="edit-link">Edit Post</a>
       </li>
-      {{ /each }}
+      {{/each}}
    </ul>
 </section>
-{{ /if }}
+{{/if}}
 
 <script src="/js/create-post.js"></script>

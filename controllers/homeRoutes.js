@@ -2,7 +2,6 @@ const router = require("express").Router();
 const sequelize = require("../config/connection");
 const { User, Post, Comment } = require("../models");
 
-//GET all posts
 router.get("/", (req, res) => {
   Post.findAll({
     attributes: ["id", "title", "content", "created_at"],
@@ -34,12 +33,11 @@ router.get("/", (req, res) => {
       });
     })
     .catch(err => {
-      console.log;
+      console.log(err);
       res.status(500).json(err);
     });
 });
 
-// GET one post
 router.get("/post/:id", (req, res) => {
   Post.findOne({
     where: {
@@ -64,13 +62,15 @@ router.get("/post/:id", (req, res) => {
     .then(dbPostData => {
       if (!dbPostData) {
         res.status(404).json({
-          message: "No post found with that id",
+          message: "No post found with this id",
         });
         return;
       }
+
       const post = dbPostData.get({
         plain: true,
       });
+
       res.render("single-post", {
         post,
         loggedIn: req.session.loggedIn,
@@ -87,6 +87,7 @@ router.get("/login", (req, res) => {
     res.redirect("/");
     return;
   }
+
   res.render("login");
 });
 
@@ -95,11 +96,13 @@ router.get("/signup", (req, res) => {
     res.redirect("/");
     return;
   }
+
   res.render("signup");
 });
 
 router.get("*", (req, res) => {
-  res.status(404).send("You can't go there...");
+  res.status(404).send("You can't go there!");
+  // res.redirect('/');
 });
 
 module.exports = router;

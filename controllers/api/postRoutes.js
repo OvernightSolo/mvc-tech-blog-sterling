@@ -2,11 +2,11 @@ const router = require("express").Router();
 const { User, Post, Comment } = require("../../models");
 const withAuth = require("../../utils/auth");
 
-// GET all posts
+// Get all posts
 router.get("/", (req, res) => {
   Post.findAll({
     attributes: ["id", "content", "title", "created_at"],
-    order: ["created_at", "DESC"],
+    order: [["created_at", "DESC"]],
     include: [
       {
         model: User,
@@ -29,7 +29,7 @@ router.get("/", (req, res) => {
     });
 });
 
-//GET a single post
+// Get a single post
 router.get("/:id", (req, res) => {
   Post.findOne({
     where: {
@@ -66,9 +66,9 @@ router.get("/:id", (req, res) => {
     });
 });
 
-// POST (create) a post
+// Create a post
 router.post("/", withAuth, (req, res) => {
-  console.log("creating post");
+  console.log("creating");
   Post.create({
     title: req.body.title,
     content: req.body.post_content,
@@ -81,8 +81,8 @@ router.post("/", withAuth, (req, res) => {
     });
 });
 
-// PUT (update) a post
-router.put(":/id", withAuth, (req, res) => {
+// Update a post
+router.put("/:id", withAuth, (req, res) => {
   Post.update(
     {
       title: req.body.title,
@@ -109,7 +109,7 @@ router.put(":/id", withAuth, (req, res) => {
     });
 });
 
-// DELETE a post
+//Delete a post
 router.delete("/:id", withAuth, (req, res) => {
   Post.destroy({
     where: {

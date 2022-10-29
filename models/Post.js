@@ -18,6 +18,13 @@ Post.init(
         len: [1],
       },
     },
+    content: {
+      type: DataTypes.STRING,
+      references: {
+        model: "user",
+        key: "id",
+      },
+    },
     user_id: {
       type: DataTypes.INTEGER,
       references: {
