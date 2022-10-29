@@ -20,9 +20,9 @@ Post.init(
     },
     content: {
       type: DataTypes.STRING,
-      references: {
-        model: "user",
-        key: "id",
+      allowNull: false,
+      validate: {
+        len: [1],
       },
     },
     user_id: {

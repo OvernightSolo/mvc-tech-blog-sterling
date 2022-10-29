@@ -4,4 +4,6 @@ function formatDate(date) {
   ).getDate()}/${new Date(date).getFullYear()}`;
 }
 
-module.exports = { formatDate };
+module.exports = {
+  formatDate,
+};
