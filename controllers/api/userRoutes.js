@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const { User, Post, Comment } = require("../../models");
 
-// GET all users
+// Get all users
 router.get("/", (req, res) => {
   User.findAll({
     attributes: {
@@ -15,7 +15,7 @@ router.get("/", (req, res) => {
     });
 });
 
-// GET one user
+// Get specific user
 router.get("/:id", (req, res) => {
   User.findOne({
     attributes: {
@@ -54,7 +54,7 @@ router.get("/:id", (req, res) => {
     });
 });
 
-// POST (create) a user
+// Create a user
 router.post("/", (req, res) => {
   User.create({
     username: req.body.username,
@@ -83,7 +83,7 @@ router.post("/login", (req, res) => {
   }).then(dbUserData => {
     if (!dbUserData) {
       res.status(400).json({
-        message: "No user found with that username",
+        message: "No user with that username!",
       });
       return;
     }
@@ -95,7 +95,7 @@ router.post("/login", (req, res) => {
 
       res.json({
         user: dbUserData,
-        message: "Login successful!",
+        message: "You are now logged in!",
       });
     });
 
@@ -103,7 +103,7 @@ router.post("/login", (req, res) => {
 
     if (!validPassword) {
       res.status(400).json({
-        message: "That password is not correct",
+        message: "Incorrect password!",
       });
       return;
     }
@@ -115,7 +115,7 @@ router.post("/login", (req, res) => {
 
       res.json({
         user: dbUserData,
-        message: '"Login successful!',
+        message: "You are now logged in!",
       });
     });
   });
