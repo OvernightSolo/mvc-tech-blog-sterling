@@ -19,7 +19,10 @@
 ## Project Description
 
 A project to practice separation of concerns (Model View Controller - MVC) as well as learn how to use the Handlebars.js templating engine.
-[View the deployed application here]()
+
+[View the deployed application here](https://mvc-tech-blog-sterling.herokuapp.com/)
+
+![screenshot](public/images/Screenshot%202022-10-29%20234227.png)
 
 ## Installation
 
@@ -55,6 +58,7 @@ Licensed under the MIT license
 
 - [Visit my GitHub](https://github.com/OvernightSolo)
 - Drop me a line at sterlingtx75@gmail.com with your questions.
+- Contact me on Twitter
 
   <a href="https://twitter.com/RobertScott6114">
   <img alt="Twitter: RobertScott6114" src="https://img.shields.io/twitter/follow/RobertScott6114.svg?style=social" target="_blank" />
